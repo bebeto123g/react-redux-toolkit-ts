@@ -1,23 +1,19 @@
-import React from 'react';
-import './Styles/global.scss';
+import React, { Suspense } from 'react';
+import { useRoutes } from 'react-router-dom';
+import { routes } from 'Router';
+import { Header } from 'Common/components';
+import { PageSpinner } from 'Common/UIKit';
+import 'Styles/global.scss';
 
 export const App = () => {
+    const appRoutes = useRoutes(routes);
+
     return (
-        <div className="container">
-            Learn React
-            <br />
-            <button className="btn btn-outline-secondary">
-                <i className="bi bi-alarm"></i> Кнопка из bootstrap
-            </button>
-            <button className="btn btn-secondary">
-                <i className="bi bi-alarm"></i> Кнопка из bootstrap
-            </button>
-            <button className="btn btn-danger">
-                <i className="bi bi-exclamation-triangle-fill"></i> Кнопка из bootstrap
-            </button>
-            <button className="btn btn-outline-danger">
-                <i className="bi bi-exclamation-triangle-fill"></i> Кнопка из bootstrap
-            </button>
-        </div>
+        <>
+            <Header />
+            <Suspense fallback={<PageSpinner />}>
+                {appRoutes}
+            </Suspense>
+        </>
     );
 };
