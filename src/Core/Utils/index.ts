@@ -5,7 +5,7 @@ export class Utils {
     static classnames(props: TClassnamesProp | Array<string | TClassnamesProp>): string {
         function entriesToString(obj: TClassnamesProp): string {
             return Object.entries(obj).reduce<string>(
-                (acc, [key, value]) => (value ? `${key} ${acc}` : acc),
+                (acc, [key, value]) => (value ? `${key} ${acc}` : acc).trim(),
                 ''
             );
         }
@@ -16,7 +16,7 @@ export class Utils {
 
         return props.reduce<string>((acc, item) => {
             const className: string = typeof item === 'string' ? item : entriesToString(item);
-            return className ? `${className} ${acc}` : acc;
+            return (className ? `${className} ${acc}` : acc).trim();
         }, '');
     }
 
