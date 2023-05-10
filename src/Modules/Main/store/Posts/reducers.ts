@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPost } from 'Core/API';
 import { IAsyncStore } from 'Store';
+import { getPostsPlaceholderThunk } from 'Modules/Main/store/Posts/actions';
 
 const initialState: IAsyncStore<IPost[]> = {
     data: null,
@@ -14,18 +15,19 @@ const initialState: IAsyncStore<IPost[]> = {
 export const postsSlice = createSlice({
     name: 'placeholder/posts',
     initialState,
-    reducers: {
-        getPosts(state) {
-            state.isLoading = true;
-        },
-        getPostsError(state, action: PayloadAction<string>) {
-            state.isLoading = false;
-            state.error = action.payload;
-        },
-        getPostsSuccess(state, action: PayloadAction<IPost[]>) {
+    reducers: {},
+    extraReducers: {
+        [getPostsPlaceholderThunk.fulfilled.type]: (state, action: PayloadAction<IPost[]>) => {
             state.isLoading = false;
             state.error = null;
             state.data = action.payload;
+        },
+        [getPostsPlaceholderThunk.pending.type]: (state) => {
+            state.isLoading = true;
+        },
+        [getPostsPlaceholderThunk.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload;
         },
     },
 });
