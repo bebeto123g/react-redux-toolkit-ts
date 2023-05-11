@@ -1,14 +1,22 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { postsSlice } from 'Modules/Main';
+import { PostsJsonServerService, postsSlice } from 'Modules/PostsJsonServer';
+import { PostsPlaceholderService } from 'Modules/PostsPlaceholder/services/PostsPlaceholderService';
 
 const rootReducer = combineReducers({
-    postsPlaceholder: postsSlice.reducer,
+    postsJsonServer: postsSlice.reducer,
+    [PostsPlaceholderService.reducerPath]: PostsPlaceholderService.reducer,
+    [PostsJsonServerService.reducerPath]: PostsJsonServerService.reducer,
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(
+                PostsPlaceholderService.middleware,
+                PostsJsonServerService.middleware
+            ),
     });
 };
 
@@ -20,7 +28,7 @@ export const useAppDispatch = () => useDispatch<TAppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<TRootState> = useSelector;
 
 export interface IAsyncStore<T> {
-    data: T | null,
-    isLoading: boolean,
-    error: string | null,
+    data: T | null;
+    isLoading: boolean;
+    error: string | null;
 }

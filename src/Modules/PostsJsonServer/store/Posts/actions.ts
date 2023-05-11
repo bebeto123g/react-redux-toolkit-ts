@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { APIServicePlaceholder } from 'Core/API';
+import { APIServiceJsonServer } from 'Core/API';
 
 export const getPostsPlaceholderThunk = createAsyncThunk(
-    'placeholder/posts/getAll',
-    async (_, thunkAPI) => {
+    'jsonServer/posts/getAll',
+    (_, thunkAPI) => {
         try {
-            return await APIServicePlaceholder.getPostsPages({ pageSize: 100 });
+            return APIServiceJsonServer.getPosts();
         } catch (e) {
             const error = e as Error;
             thunkAPI.rejectWithValue(error.message || 'Оказия');

@@ -1,3 +1,3 @@
-import { postsSlice } from 'Modules/Main/store/Posts/reducers';
+import { MainView } from 'Modules/Main/views/MainView';
 
-export { postsSlice };
+export { MainView };
