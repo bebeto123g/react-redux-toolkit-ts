@@ -27,7 +27,18 @@ export const PostsJsonServerViewToolkit = () => {
     return (
         <ul>
             {posts?.map((post) => {
-                return <li key={post.id}>{post.title}</li>;
+                return (
+                    <li key={post.id} style={{ marginBottom: '8px' }}>
+                        <span>{post.title}</span>
+                        <br />
+                        <span>
+                            {Intl.DateTimeFormat('ru-RU', {
+                                dateStyle: 'medium',
+                                timeStyle: 'medium',
+                            }).format(new Date(post.createDate))}
+                        </span>
+                    </li>
+                );
             })}
         </ul>
     );

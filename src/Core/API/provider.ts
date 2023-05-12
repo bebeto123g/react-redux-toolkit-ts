@@ -1,14 +1,11 @@
-import { Utils } from 'Core/Utils';
-
 export class APIProvider {
     static async get<T>(url: string): Promise<T> {
-        await Utils.delay(300);
         const response = await fetch(url, {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
         });
+
+        if (!response.ok) throw new Error(response.statusText);
         return response.json();
     }
 
@@ -16,14 +13,13 @@ export class APIProvider {
         url: string,
         data: TData
     ): Promise<TResponse> {
-        await Utils.delay(300);
         const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         });
+
+        if (!response.ok) throw new Error(response.statusText);
         return response.json();
     }
 
@@ -31,14 +27,13 @@ export class APIProvider {
         url: string,
         data: TData
     ): Promise<TResponse> {
-        await Utils.delay(300);
         const response = await fetch(url, {
             method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         });
+
+        if (!response.ok) throw new Error(response.statusText);
         return response.json();
     }
 }

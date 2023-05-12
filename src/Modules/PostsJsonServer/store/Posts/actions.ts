@@ -3,12 +3,15 @@ import { APIServiceJsonServer } from 'Core/API';
 
 export const getPostsPlaceholderThunk = createAsyncThunk(
     'jsonServer/posts/getAll',
-    (_, thunkAPI) => {
+    async (_, thunkAPI) => {
         try {
-            return APIServiceJsonServer.getPosts();
+            return await APIServiceJsonServer.getPosts();
         } catch (e) {
             const error = e as Error;
-            thunkAPI.rejectWithValue(error.message || 'Оказия');
+            return thunkAPI.rejectWithValue(error?.message || 'Оказия');
         }
     }
 );
+
+
+// TODO посмотреть как в лентере T для типов и I для интерфейсов делать
