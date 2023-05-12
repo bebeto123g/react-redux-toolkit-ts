@@ -1,7 +1,10 @@
 import React, { KeyboardEventHandler, memo, MouseEventHandler, useRef, useState } from 'react';
 import { IPostQuery } from 'Core/API';
-import { PostsJsonServerService } from '../services/PostsJsonServerService';
 import { Spinner } from 'Common/UIKit';
+import {
+    useDeletePostJsonServerMutation,
+    useUpdatePostJsonServerMutation,
+} from 'Modules/PostsJsonServer/services/PostsJsonServerService';
 
 interface IPostPlaceholderItemProps {
     post: IPostQuery;
@@ -13,13 +16,8 @@ export const PostsJsonServerItem = memo((props: IPostPlaceholderItemProps) => {
     const [isEdit, setIsEdit] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const { useDeletePostJsonServerMutation, useUpdatePostJsonServerMutation } =
-        PostsJsonServerService;
-
     const [deletePost, { isLoading: isDeleteLoading }] = useDeletePostJsonServerMutation();
     const [updatePost, { isLoading: isUpdateLoading }] = useUpdatePostJsonServerMutation();
-
-    console.log('isUpdateLoading', isUpdateLoading);
 
     const handleRemove: MouseEventHandler = (event) => {
         event.stopPropagation();

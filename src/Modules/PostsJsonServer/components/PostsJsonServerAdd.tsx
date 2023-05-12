@@ -1,24 +1,27 @@
 import React, { FormEventHandler } from 'react';
-import { PostsJsonServerService } from '../services/PostsJsonServerService';
+import { useCreatePostJsonServerMutation } from '../services/PostsJsonServerService';
+import { Spinner } from 'Common/UIKit';
 
 export const PostsJsonServerAdd = () => {
-    const { useCreatePostJsonServerMutation } = PostsJsonServerService;
-    const [createPostJsonServer] = useCreatePostJsonServerMutation();
+    const [createPostJsonServer, { isLoading }] = useCreatePostJsonServerMutation();
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+        event.preventDefault();
         // @ts-ignore
         const input = event.currentTarget.elements['post-title'] as HTMLInputElement;
-        event.preventDefault();
-        createPostJsonServer({
-            title: input.value,
-            text: '',
-        });
-        input.value = '';
+        const title = input.value.trim();
+        if (title) {
+            createPostJsonServer({
+                title: input.value,
+                text: '',
+            });
+            input.value = '';
+        }
     };
 
     return (
         <>
-            <h3>Добавить пост</h3>
+            <h3>Add Post</h3>
             <form className="row mb-4" onSubmit={handleSubmit}>
                 <div className="col-11">
                     <label htmlFor="inputPassword2" className="visually-hidden">
@@ -33,8 +36,8 @@ export const PostsJsonServerAdd = () => {
                     />
                 </div>
                 <div className="col-1 d-flex justify-content-end">
-                    <button type="submit" className="btn btn-primary">
-                        Add
+                    <button type="submit" className="btn btn-primary" style={{ minWidth: '75px' }}>
+                        {isLoading ? <Spinner small /> : 'Add'}
                     </button>
                 </div>
             </form>

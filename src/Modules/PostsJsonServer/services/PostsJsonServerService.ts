@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { IPostQuery, JSON_SERVER_BASE_URL } from 'Core/API';
 
-export const PostsJsonServerService = createApi({
+export const PostsJsonServerServiceApi = createApi({
     reducerPath: 'postJsonServerRTKQuery',
     baseQuery: fetchBaseQuery({
         baseUrl: JSON_SERVER_BASE_URL,
@@ -46,3 +46,10 @@ export const PostsJsonServerService = createApi({
         }),
     }),
 });
+
+export const {
+    useGetPostsJsonServerQuery,
+    useDeletePostJsonServerMutation,
+    useUpdatePostJsonServerMutation,
+    useCreatePostJsonServerMutation,
+} = PostsJsonServerServiceApi;

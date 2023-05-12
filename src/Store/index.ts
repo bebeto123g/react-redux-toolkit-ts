@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { PostsJsonServerService, postsSlice } from 'Modules/PostsJsonServer';
+import { PostsJsonServerServiceApi, postsSlice } from 'Modules/PostsJsonServer';
 import { PostsPlaceholderService } from 'Modules/PostsPlaceholder/services/PostsPlaceholderService';
 
 const rootReducer = combineReducers({
     postsJsonServer: postsSlice.reducer,
     [PostsPlaceholderService.reducerPath]: PostsPlaceholderService.reducer,
-    [PostsJsonServerService.reducerPath]: PostsJsonServerService.reducer,
+    [PostsJsonServerServiceApi.reducerPath]: PostsJsonServerServiceApi.reducer,
 });
 
 export const setupStore = () => {
@@ -15,7 +15,7 @@ export const setupStore = () => {
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(
                 PostsPlaceholderService.middleware,
-                PostsJsonServerService.middleware
+                PostsJsonServerServiceApi.middleware
             ),
     });
 };

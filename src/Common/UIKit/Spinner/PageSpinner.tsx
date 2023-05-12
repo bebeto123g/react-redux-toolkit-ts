@@ -12,7 +12,7 @@ export const PageSpinner = (props: IPageSpinnerProps) => {
     const { color, className = '' } = props;
 
     return (
-        <div className={Utils.classnames(['page-loader', className])}>
+        <div className={Utils.classnames(['page-spinner', className])}>
             <Spinner color={color || EBootstrapColors.SUCCESS} />
         </div>
     );
