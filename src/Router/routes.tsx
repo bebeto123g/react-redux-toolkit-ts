@@ -1,11 +1,11 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { MainPage } from 'Pages/MainPage';
-import { AboutPage } from 'Pages/AboutPage';
 import { PostsPlaceholderPage } from 'Pages/PostsPlaceholderPage';
 import { PostsJsonServerPageThunk } from 'Pages/PostsJsonServerPageThunk';
 import { ERouterPaths } from 'Router/enums';
 import { PostsJsonServerPageRtk } from 'Pages/PostsJsonServerPageRTK';
+import { TodosJsonServerRtlQueryPage } from 'Pages/TodosJsonServerRtlQueryPage';
 
 export const routes: RouteObject[] = [
     {
@@ -25,7 +25,7 @@ export const routes: RouteObject[] = [
         element: <PostsJsonServerPageRtk />,
     },
     {
-        path: ERouterPaths.ABOUT,
-        element: <AboutPage />,
+        path: ERouterPaths.TODOS_JSON_SERVER_RTK,
+        element: <TodosJsonServerRtlQueryPage />,
     },
 ];

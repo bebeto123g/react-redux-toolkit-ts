@@ -1,7 +1,11 @@
-export { JSON_SERVER_BASE_URL } from './JsonServer/constants';
+export {
+    JSON_SERVER_BASE_URL,
+    JSON_SERVER_BASE_URL_POSTS,
+    JSON_SERVER_BASE_URL_TODOS,
+} from './JsonServer/constants';
 
 export type { IServicePlaceholderRequestParams } from './JsonPlaceholder/interfaces';
-export  { JSON_PLACEHOLDER_BASE_URL } from './JsonPlaceholder/constants';
+export { JSON_PLACEHOLDER_BASE_URL } from './JsonPlaceholder/constants';
 
 export { APIServicePlaceholder } from './JsonPlaceholder/service';
 export type { ITodo, IPost } from './JsonPlaceholder/interfaces';

@@ -1,35 +1,39 @@
-import React, { KeyboardEventHandler, memo, MouseEventHandler, useRef, useState } from 'react';
-import { IPostQuery } from 'Core/API';
+import React, { ChangeEventHandler, KeyboardEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { Spinner } from 'Common/UIKit';
+import { ITodoQuery } from 'Core/API';
+import { EBootstrapColors } from 'Core/enums';
 import {
-    useDeletePostJsonServerMutation,
-    useUpdatePostJsonServerMutation,
-} from 'Modules/PostsJsonServerRtkQuery/services/PostsJsonServerServiceApi';
+    useDeleteJsonServerRtkQueryTodosMutation,
+    useUpdateCompletedJsonServerRtkQueryTodosMutation,
+} from '../services/TodosJsonServerRtkQueryApi';
 
-interface IPostPlaceholderItemProps {
-    post: IPostQuery;
+interface IItemTodoProps {
+    todo: ITodoQuery;
 }
 
-export const PostsItem = memo((props: IPostPlaceholderItemProps) => {
-    const { post } = props;
+export const ItemTodo = (props: IItemTodoProps) => {
+    const { todo } = props;
+
+    const [deleteTodoMutation, { isLoading: isDeleteLoading }] = useDeleteJsonServerRtkQueryTodosMutation();
+    const [updateTodoMutation, { isLoading: isUpdateLoading }] =
+        useUpdateCompletedJsonServerRtkQueryTodosMutation();
+
+    const [toggleTodoMutation, { isLoading: isToggleLoading }] =
+        useUpdateCompletedJsonServerRtkQueryTodosMutation();
 
     const [isEdit, setIsEdit] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [deletePost, { isLoading: isDeleteLoading }] = useDeletePostJsonServerMutation();
-    const [updatePost, { isLoading: isUpdateLoading }] = useUpdatePostJsonServerMutation();
-
     const handleRemove: MouseEventHandler = (event) => {
         event.stopPropagation();
-        deletePost(post);
+        deleteTodoMutation({ id: todo.id });
     };
 
     const handleUpdate = () => {
         const value = inputRef.current?.value.trim() || '';
-        if (post.title.trim() !== value) {
-            updatePost({ ...post, title: value });
+        if (todo.title.trim() !== value) {
+            updateTodoMutation({ id: todo.id, title: value, completed: todo.completed });
         }
-
         setIsEdit(false);
     };
 
@@ -46,6 +50,14 @@ export const PostsItem = memo((props: IPostPlaceholderItemProps) => {
         });
     };
 
+    const toggleCompleted: ChangeEventHandler<HTMLInputElement> = (event) => {
+        toggleTodoMutation({
+            id: todo.id,
+            title: todo.title,
+            completed: event.currentTarget.checked,
+        });
+    };
+
     const isDisabled = isDeleteLoading || isUpdateLoading;
 
     return (
@@ -58,18 +70,30 @@ export const PostsItem = memo((props: IPostPlaceholderItemProps) => {
                 backgroundColor: isDisabled ? '#0a09090a' : 'initial',
             }}
         >
+            {isToggleLoading ? (
+                <Spinner small className="mt-0 me-3" color={EBootstrapColors.PRIMARY} />
+            ) : (
+                <input
+                    className="form-check-input mt-0 me-3"
+                    type="checkbox"
+                    onChange={toggleCompleted}
+                    checked={todo.completed}
+                    aria-label="Checkbox for following text input "
+                />
+            )}
+
             {isEdit && !isDisabled ? (
                 <input
                     type="text"
                     onBlur={handleUpdate}
-                    defaultValue={post.title}
+                    defaultValue={todo.title}
                     className="form-control"
                     onKeyDown={handleKeyboard}
                     ref={inputRef}
                 />
             ) : (
                 <div onDoubleClick={handleEdit} className="flex-grow-1 d-flex align-items-center">
-                    {post.id}. {post.title}
+                    {todo.id}. {todo.title}
                 </div>
             )}
             <button
@@ -88,6 +112,4 @@ export const PostsItem = memo((props: IPostPlaceholderItemProps) => {
             </button>
         </li>
     );
-});
-
-PostsItem.displayName = 'PostsItem';
+};

@@ -7,7 +7,7 @@
     },
     {
       "title": "React 18",
-      "completed": true,
+      "completed": false,
       "id": 2
     },
     {
@@ -16,9 +16,19 @@
       "id": 3
     },
     {
-      "title": "Vue",
       "completed": true,
+      "title": "Vue",
       "id": 4
+    },
+    {
+      "title": "Redux Toolkit",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "title": "RTK Query",
+      "completed": false,
+      "id": 6
     }
   ],
   "posts": [

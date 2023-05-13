@@ -1,10 +1,8 @@
 import React, { useMemo } from 'react';
 import { SpinnerOverlay } from 'Common/UIKit';
-import { PostsAdd } from 'Modules/PostsJsonServerRtkQuery/components/PostsAdd';
-import {
-    PostsItem,
-} from 'Modules/PostsJsonServerRtkQuery/components/PostsItem';
-import { useGetPostsJsonServerQuery } from '../services/PostsJsonServerService';
+import { PostsAdd } from '../components/PostsAdd';
+import { PostsItem } from '../components/PostsItem';
+import { useGetPostsJsonServerQuery } from '../services/PostsJsonServerServiceApi';
 
 export const PostsJsonServerViewRtk = () => {
     const { data: posts = [], isFetching } = useGetPostsJsonServerQuery(100);

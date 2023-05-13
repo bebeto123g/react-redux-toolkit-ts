@@ -3,11 +3,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { PostsJsonServerServiceApi } from 'Modules/PostsJsonServerRtkQuery';
 import { PostsPlaceholderService } from 'Modules/PostsPlaceholder/services/PostsPlaceholderService';
 import { postsSlice } from 'Modules/PostsJsonServerThunk';
+import { TodosJsonServerRtkQueryApi } from 'Modules/TodosJsonServerRtlQuery';
 
 const rootReducer = combineReducers({
     postsJsonServer: postsSlice.reducer,
     [PostsPlaceholderService.reducerPath]: PostsPlaceholderService.reducer,
     [PostsJsonServerServiceApi.reducerPath]: PostsJsonServerServiceApi.reducer,
+    [TodosJsonServerRtkQueryApi.reducerPath]: TodosJsonServerRtkQueryApi.reducer,
 });
 
 export const setupStore = () => {
@@ -16,7 +18,8 @@ export const setupStore = () => {
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(
                 PostsPlaceholderService.middleware,
-                PostsJsonServerServiceApi.middleware
+                PostsJsonServerServiceApi.middleware,
+                TodosJsonServerRtkQueryApi.middleware
             ),
     });
 };

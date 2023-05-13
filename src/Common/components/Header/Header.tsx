@@ -11,7 +11,7 @@ export const Header = () => {
                     <NavLink to={ERouterPaths.POSTS_PLACEHOLDER}>Posts Placeholder</NavLink>
                     <NavLink to={ERouterPaths.POSTS_JSON_SERVER}>Posts JsonServer Thunk</NavLink>
                     <NavLink to={ERouterPaths.POSTS_JSON_SERVER_RTK}>Posts JsonServer RTK</NavLink>
-                    <NavLink to={ERouterPaths.ABOUT}>About</NavLink>
+                    <NavLink to={ERouterPaths.TODOS_JSON_SERVER_RTK}>Todos JsonServer RTK</NavLink>
                 </div>
             </div>
         </nav>
