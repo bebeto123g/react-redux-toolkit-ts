@@ -26,9 +26,3 @@ export type TAppDispatch = TAppState['dispatch'];
 
 export const useAppDispatch = () => useDispatch<TAppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<TRootState> = useSelector;
-
-export interface IAsyncStore<T> {
-    data: T | null;
-    isLoading: boolean;
-    error: string | null;
-}

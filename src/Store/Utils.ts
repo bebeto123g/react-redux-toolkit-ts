@@ -1,5 +1,6 @@
 import { ActionReducerMapBuilder, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { IAsyncStore } from 'Store';
+import { IAsyncStore } from 'Store/interfaces';
+import { EProcessStatus } from 'Store/enums';
 
 type TThunk<T> = ReturnType<typeof createAsyncThunk<T>>;
 type TBuilder<T> = ActionReducerMapBuilder<IAsyncStore<T>>;
@@ -7,17 +8,17 @@ type TBuilder<T> = ActionReducerMapBuilder<IAsyncStore<T>>;
 export class ReduxUtils {
     static createThunkExtraReducers<T>(thunk: TThunk<T>, builder: TBuilder<unknown>) {
         builder.addCase(thunk.fulfilled.type, (state, action: PayloadAction<unknown>) => {
-            state.isLoading = false;
+            state.status = EProcessStatus.SUCCESS;
             state.error = null;
             state.data = action.payload;
         });
 
         builder.addCase(thunk.pending.type, (state) => {
-            state.isLoading = true;
+            state.status = EProcessStatus.PENDING;
         });
 
         builder.addCase(thunk.rejected.type, (state, action: PayloadAction<string>) => {
-            state.isLoading = false;
+            state.status = EProcessStatus.ERROR;
             state.error = action.payload;
         });
     }

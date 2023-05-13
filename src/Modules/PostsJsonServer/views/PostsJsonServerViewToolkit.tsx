@@ -4,10 +4,11 @@ import { postsJsonServerSelector } from 'Modules/PostsJsonServer/store/Posts/sel
 import { useAppDispatch } from 'Store';
 import { getPostsPlaceholderThunk } from 'Modules/PostsJsonServer/store/Posts/actions';
 import { PageSpinner } from 'Common/UIKit';
+import { EProcessStatus } from 'Store/enums';
 
 /** toolkit */
 export const PostsJsonServerViewToolkit = () => {
-    const { isLoading, error, data: posts } = useSelector(postsJsonServerSelector);
+    const { status, error, data: posts } = useSelector(postsJsonServerSelector);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -16,11 +17,11 @@ export const PostsJsonServerViewToolkit = () => {
         }
     }, [dispatch, posts?.length]);
 
-    if (isLoading) {
+    if (status === EProcessStatus.PENDING) {
         return <PageSpinner />;
     }
 
-    if (error) {
+    if (status === EProcessStatus.ERROR && error) {
         return <p className="text-danger">{error}</p>;
     }
 
