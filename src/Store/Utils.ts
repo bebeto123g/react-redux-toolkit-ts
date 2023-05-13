@@ -6,7 +6,7 @@ type TThunk<T> = ReturnType<typeof createAsyncThunk<T>>;
 type TBuilder<T> = ActionReducerMapBuilder<IAsyncStore<T>>;
 
 export class ReduxUtils {
-    static createThunkExtraReducers<T>(thunk: TThunk<T>, builder: TBuilder<unknown>) {
+    public static createThunkExtraReducers<T>(thunk: TThunk<T>, builder: TBuilder<unknown>) {
         builder.addCase(thunk.fulfilled.type, (state, action: PayloadAction<unknown>) => {
             state.status = EProcessStatus.SUCCESS;
             state.error = null;
@@ -17,9 +17,19 @@ export class ReduxUtils {
             state.status = EProcessStatus.PENDING;
         });
 
-        builder.addCase(thunk.rejected.type, (state, action: PayloadAction<string>) => {
-            state.status = EProcessStatus.ERROR;
-            state.error = action.payload;
-        });
+        builder.addCase(thunk.rejected.type, ReduxUtils.setThunkErrorAsyncState);
+    }
+
+    public static setThunkErrorAsyncState(state: IAsyncStore<unknown>, action: PayloadAction<string>) {
+        state.status = EProcessStatus.ERROR;
+        state.error = action.payload;
+    }
+
+    public static createDefaultAsyncState<T>(initialData?: T) {
+        return {
+            data: initialData || null,
+            error: null,
+            status: EProcessStatus.IDLE,
+        };
     }
 }

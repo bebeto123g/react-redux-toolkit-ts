@@ -28,15 +28,20 @@ export class APIServiceJsonServer {
     }
 
     static createPost(post: Omit<IPostQuery, 'id'>) {
-        return APIProvider.post<IPostQuery, Omit<IPostQuery, 'id'>>(
-            JSON_SERVER_BASE_URL_POSTS,
-            post
-        );
+        return APIProvider.post<IPostQuery, Omit<IPostQuery, 'id'>>(JSON_SERVER_BASE_URL_POSTS, post);
     }
 
     static createGetTodosQueryFilter(filter: ETodoQueryFilterAction) {
         return filter === ETodoQueryFilterAction.ALL
             ? ''
             : `/?completed=${filter === ETodoQueryFilterAction.COMPLETED}`;
+    }
+
+    static deletePost(postId: number) {
+        return APIProvider.delete(`${JSON_SERVER_BASE_URL_POSTS}/${postId}`);
+    }
+
+    static updatePost(post: IPostQuery): Promise<IPostQuery> {
+        return APIProvider.patch(`${JSON_SERVER_BASE_URL_POSTS}/${post.id}`, post);
     }
 }

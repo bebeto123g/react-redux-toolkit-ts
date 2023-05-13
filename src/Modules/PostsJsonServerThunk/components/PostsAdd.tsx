@@ -1,9 +1,12 @@
 import React, { FormEventHandler } from 'react';
-import { useCreatePostJsonServerMutation } from '../services/PostsJsonServerService';
 import { Spinner } from 'Common/UIKit';
+import { useAppDispatch } from 'Store';
+import { createPostJsonServerThunk } from '../store/Posts/reducers';
 
-export const PostsJsonServerAdd = () => {
-    const [createPostJsonServer, { isLoading }] = useCreatePostJsonServerMutation();
+export const PostsAdd = () => {
+    const dispatch = useAppDispatch();
+
+    const isLoading = false;
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
@@ -11,10 +14,11 @@ export const PostsJsonServerAdd = () => {
         const input = event.currentTarget.elements['post-title'] as HTMLInputElement;
         const title = input.value.trim();
         if (title) {
-            createPostJsonServer({
-                title: input.value,
-                text: '',
-            });
+            dispatch(
+                createPostJsonServerThunk({
+                    title: input.value,
+                })
+            );
             input.value = '';
         }
     };

@@ -1,7 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { PostsJsonServerServiceApi, postsSlice } from 'Modules/PostsJsonServer';
+import { PostsJsonServerServiceApi } from 'Modules/PostsJsonServerRtkQuery';
 import { PostsPlaceholderService } from 'Modules/PostsPlaceholder/services/PostsPlaceholderService';
+import { postsSlice } from 'Modules/PostsJsonServerThunk';
 
 const rootReducer = combineReducers({
     postsJsonServer: postsSlice.reducer,

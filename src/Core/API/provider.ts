@@ -9,10 +9,7 @@ export class APIProvider {
         return response.json();
     }
 
-    static async post<TResponse, TData extends object>(
-        url: string,
-        data: TData
-    ): Promise<TResponse> {
+    static async post<TResponse, TData extends object>(url: string, data: TData): Promise<TResponse> {
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -23,14 +20,21 @@ export class APIProvider {
         return response.json();
     }
 
-    static async patch<TResponse, TData extends object>(
-        url: string,
-        data: TData
-    ): Promise<TResponse> {
+    static async patch<TResponse, TData extends object>(url: string, data: TData): Promise<TResponse> {
         const response = await fetch(url, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
+        });
+
+        if (!response.ok) throw new Error(response.statusText);
+        return response.json();
+    }
+
+    static async delete<TResponse>(url: string): Promise<TResponse> {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
         });
 
         if (!response.ok) throw new Error(response.statusText);

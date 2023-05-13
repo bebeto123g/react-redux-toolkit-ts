@@ -2,32 +2,31 @@ import React, { KeyboardEventHandler, memo, MouseEventHandler, useRef, useState 
 import { IPostQuery } from 'Core/API';
 import { Spinner } from 'Common/UIKit';
 import {
-    useDeletePostJsonServerMutation,
-    useUpdatePostJsonServerMutation,
-} from 'Modules/PostsJsonServer/services/PostsJsonServerService';
+    removePostJsonServerThunk,
+    updatePostJsonServerThunk,
+} from 'Modules/PostsJsonServerThunk/store/Posts/reducers';
+import { useAppDispatch } from 'Store';
 
 interface IPostPlaceholderItemProps {
     post: IPostQuery;
 }
 
-export const PostsJsonServerItem = memo((props: IPostPlaceholderItemProps) => {
+export const PostsItem = memo((props: IPostPlaceholderItemProps) => {
     const { post } = props;
 
+    const dispatch = useAppDispatch();
     const [isEdit, setIsEdit] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [deletePost, { isLoading: isDeleteLoading }] = useDeletePostJsonServerMutation();
-    const [updatePost, { isLoading: isUpdateLoading }] = useUpdatePostJsonServerMutation();
-
     const handleRemove: MouseEventHandler = (event) => {
         event.stopPropagation();
-        deletePost(post);
+        dispatch(removePostJsonServerThunk(post));
     };
 
     const handleUpdate = () => {
         const value = inputRef.current?.value.trim() || '';
         if (post.title.trim() !== value) {
-            updatePost({ ...post, title: value });
+            dispatch(updatePostJsonServerThunk({ ...post, title: value }));
         }
 
         setIsEdit(false);
@@ -46,6 +45,8 @@ export const PostsJsonServerItem = memo((props: IPostPlaceholderItemProps) => {
         });
     };
 
+    const isDeleteLoading = false;
+    const isUpdateLoading = false;
     const isDisabled = isDeleteLoading || isUpdateLoading;
 
     return (
@@ -90,4 +91,4 @@ export const PostsJsonServerItem = memo((props: IPostPlaceholderItemProps) => {
     );
 });
 
-PostsJsonServerItem.displayName = 'PostsJsonServerItem';
+PostsItem.displayName = 'PostsItem';

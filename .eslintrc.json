@@ -24,7 +24,7 @@
     "no-debugger": "warn",
     "no-console": "off",
     "prefer-const": "warn",
-    "max-len": ["warn", { "code": 100 }],
+    "max-len": ["warn", { "code": 110 }],
     "comma-dangle": ["warn", {
       "arrays": "always-multiline",
       "objects": "always-multiline",
