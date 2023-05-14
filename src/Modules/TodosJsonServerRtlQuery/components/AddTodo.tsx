@@ -5,13 +5,13 @@ import { useAddJsonServerRtkQueryTodosMutation } from '../services/TodosJsonServ
 export const AddTodo = () => {
     const [addTodoMutation, { isLoading }] = useAddJsonServerRtkQueryTodosMutation();
 
-    const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault();
         // @ts-ignore
         const input = event.currentTarget.elements['todo-title'] as HTMLInputElement;
         const title = input.value.trim();
         if (title) {
-            addTodoMutation({ title });
+            await addTodoMutation({ title });
             input.value = '';
         }
     };

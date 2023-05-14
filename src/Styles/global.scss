@@ -53,3 +53,8 @@ html {
         display: none !important;
     }
 }
+
+/* Костыль деактивирует overlay CRA без eject */
+iframe {
+    display: none;
+}

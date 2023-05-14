@@ -16,7 +16,15 @@ export const TodosJsonServerRtkQueryApi = createApi({
                     _limit: limit || 100,
                 },
             }),
-            providesTags: () => [{ type: 'JsonServerTodos', id: 'LIST' }],
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ id }) => ({ type: 'JsonServerTodos' as const, id })),
+                          { type: 'JsonServerTodos', id: 'TODO-LIST' },
+                      ]
+                    : [{ type: 'JsonServerTodos', id: 'TODO-LIST' }],
+
+            transformResponse: (todos: ITodoQuery[]) => todos.reverse(),
         }),
         addJsonServerRtkQueryTodos: build.mutation<ITodoQuery, Pick<ITodoQuery, 'title'>>({
             query: ({ title }) => ({
@@ -27,22 +35,22 @@ export const TodosJsonServerRtkQueryApi = createApi({
                     completed: false,
                 },
             }),
-            invalidatesTags: [{ type: 'JsonServerTodos', id: 'LIST' }],
+            invalidatesTags: [{ type: 'JsonServerTodos', id: 'TODO-LIST' }],
         }),
         deleteJsonServerRtkQueryTodos: build.mutation<ITodoQuery, Pick<ITodoQuery, 'id'>>({
             query: ({ id }) => ({
                 url: `${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: [{ type: 'JsonServerTodos', id: 'LIST' }],
+            invalidatesTags: [{ type: 'JsonServerTodos', id: 'TODO-LIST' }],
         }),
         updateCompletedJsonServerRtkQueryTodos: build.mutation<ITodoQuery, ITodoQuery>({
             query: ({ completed, id, title }) => ({
-                url: `${id}`,
+                url: `/${id}`,
                 method: 'PUT',
                 body: { completed, title },
             }),
-            invalidatesTags: [{ type: 'JsonServerTodos', id: 'LIST' }],
+            invalidatesTags: [{ type: 'JsonServerTodos', id: 'TODO-LIST' }],
         }),
     }),
 });

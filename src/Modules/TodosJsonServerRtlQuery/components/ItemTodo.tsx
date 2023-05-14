@@ -24,22 +24,22 @@ export const ItemTodo = (props: IItemTodoProps) => {
     const [isEdit, setIsEdit] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleRemove: MouseEventHandler = (event) => {
+    const handleRemove: MouseEventHandler = async (event) => {
         event.stopPropagation();
-        deleteTodoMutation({ id: todo.id });
+        await deleteTodoMutation({ id: todo.id });
     };
 
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
         const value = inputRef.current?.value.trim() || '';
         if (todo.title.trim() !== value) {
-            updateTodoMutation({ id: todo.id, title: value, completed: todo.completed });
+            await updateTodoMutation({ id: todo.id, title: value, completed: todo.completed });
         }
         setIsEdit(false);
     };
 
-    const handleKeyboard: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    const handleKeyboard: KeyboardEventHandler<HTMLInputElement> = async (event) => {
         if (event.key === 'Enter') {
-            handleUpdate();
+           await handleUpdate();
         }
     };
 
@@ -50,8 +50,8 @@ export const ItemTodo = (props: IItemTodoProps) => {
         });
     };
 
-    const toggleCompleted: ChangeEventHandler<HTMLInputElement> = (event) => {
-        toggleTodoMutation({
+    const toggleCompleted: ChangeEventHandler<HTMLInputElement> = async (event) => {
+        await toggleTodoMutation({
             id: todo.id,
             title: todo.title,
             completed: event.currentTarget.checked,

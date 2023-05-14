@@ -1,3 +1,4 @@
-import { RequireAuth } from 'Common/HOC/RequireAuth/RequireAuth';
+import { RequireAuth } from './RequireAuth/RequireAuth';
+import { ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
 
-export { RequireAuth };
+export { RequireAuth, ErrorBoundary };
