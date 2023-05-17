@@ -1,6 +1,6 @@
 import React from 'react';
-import { TodosJsonServerRtlQueryView } from 'Modules/TodosJsonServerRtlQuery';
 import { ErrorBoundary } from 'Common/HOC';
+import { TodosJsonServerRtlQueryView } from 'Modules/TodosJsonServerRtlQuery';
 
 export const TodosJsonServerRtlQueryPage = () => {
     return (

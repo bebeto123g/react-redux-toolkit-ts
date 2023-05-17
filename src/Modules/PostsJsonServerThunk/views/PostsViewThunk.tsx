@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { postsJsonServerSelector } from '../store/Posts/selectors';
-import { useAppDispatch } from 'Store';
 import { SpinnerOverlay } from 'Common/UIKit';
+import { useAppDispatch } from 'Store';
 import { EProcessStatus } from 'Store/enums';
 import { PostsAdd } from '../components/PostsAdd';
 import { PostsItem } from '../components/PostsItem';
 import { getPostsJsonServerThunk } from '../store/Posts/reducers';
+import { postsJsonServerSelector } from '../store/Posts/selectors';
 
 /** toolkit */
 export const PostsViewThunk = () => {

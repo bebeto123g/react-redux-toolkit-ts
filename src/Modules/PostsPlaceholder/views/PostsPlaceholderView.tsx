@@ -1,8 +1,8 @@
 import React from 'react';
-import { PostsPlaceholderService } from 'Modules/PostsPlaceholder/services/PostsPlaceholderService';
 import { PageSpinner } from 'Common/UIKit';
-import { PostPlaceholderItem } from 'Modules/PostsPlaceholder/components/PostPlaceholderItem';
 import { PostPlaceholderAdd } from 'Modules/PostsPlaceholder/components/PostPlaceholderAdd';
+import { PostPlaceholderItem } from 'Modules/PostsPlaceholder/components/PostPlaceholderItem';
+import { PostsPlaceholderService } from 'Modules/PostsPlaceholder/services/PostsPlaceholderService';
 
 /** RTK Query */
 export const PostsPlaceholderView = () => {

@@ -1,6 +1,6 @@
 import React, { FormEventHandler } from 'react';
-import { useCreatePostJsonServerMutation } from '../services/PostsJsonServerServiceApi';
 import { Spinner } from 'Common/UIKit';
+import { useCreatePostJsonServerMutation } from '../services/PostsJsonServerServiceApi';
 
 export const PostsAdd = () => {
     const [createPostJsonServer, { isLoading }] = useCreatePostJsonServerMutation();

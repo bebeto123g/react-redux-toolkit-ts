@@ -28,12 +28,7 @@ export const PostPlaceholderItem = (props: IPostPlaceholderItemProps) => {
     return (
         <li className="list-group-item d-flex justify-content-between">
             {isEdit ? (
-                <input
-                    type="text"
-                    onBlur={handleUpdate}
-                    defaultValue={post.title}
-                    className="form-control"
-                />
+                <input type="text" onBlur={handleUpdate} defaultValue={post.title} className="form-control" />
             ) : (
                 <span onDoubleClick={() => setIsEdit(true)}>
                     {post.id}. {post.title}

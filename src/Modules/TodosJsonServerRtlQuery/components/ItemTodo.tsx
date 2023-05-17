@@ -39,7 +39,7 @@ export const ItemTodo = (props: IItemTodoProps) => {
 
     const handleKeyboard: KeyboardEventHandler<HTMLInputElement> = async (event) => {
         if (event.key === 'Enter') {
-           await handleUpdate();
+            await handleUpdate();
         }
     };
 

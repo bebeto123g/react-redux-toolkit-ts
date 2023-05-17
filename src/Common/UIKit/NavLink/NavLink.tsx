@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { NavLink as NavLinkRouter, NavLinkProps } from 'react-router-dom';
+import { NavLinkProps, NavLink as NavLinkRouter } from 'react-router-dom';
 import { Utils } from 'Core/Utils';
 import styles from './NavLink.module.scss';
 
 interface INavLinkProps extends NavLinkProps {
-    className?: string
+    className?: string;
 }
 
 export const NavLink: FC<INavLinkProps> = (props) => {

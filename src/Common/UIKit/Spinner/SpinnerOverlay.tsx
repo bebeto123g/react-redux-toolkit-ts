@@ -10,17 +10,12 @@ interface ISpinnerOverlayProps {
 
 export const SpinnerOverlay: FC<PropsWithChildren<ISpinnerOverlayProps>> = (props) => {
     const { children, isLoading, color } = props;
-    const classes = Utils.classnames([
-        { ['spinner-overlay--visible']: isLoading },
-        'spinner-overlay',
-    ]);
+    const classes = Utils.classnames([{ ['spinner-overlay--visible']: isLoading }, 'spinner-overlay']);
 
     return (
         <div className={classes}>
             <PageSpinner color={color} />
-            <div className="spinner-overlay-content">
-                {children}
-            </div>
+            <div className="spinner-overlay-content">{children}</div>
         </div>
     );
 };

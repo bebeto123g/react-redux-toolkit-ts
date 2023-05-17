@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { APIServiceJsonServer, IPostQuery } from 'Core/API';
-import { ReduxUtils } from 'Store/Utils';
 import { IAsyncStore } from 'Store/interfaces';
+import { ReduxUtils } from 'Store/Utils';
 
 const initialState: IAsyncStore<IPostQuery[]> = ReduxUtils.createDefaultAsyncState();
 

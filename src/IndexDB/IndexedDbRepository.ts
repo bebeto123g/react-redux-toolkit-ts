@@ -1,11 +1,11 @@
+import { TODO_OBJECT_STORE_NAME } from 'IndexDB/constants';
 import {
     deletePromise,
     getAllPromise,
     getPromise,
-    putPromise,
     openDatabasePromise,
+    putPromise,
 } from 'IndexDB/openDatabasePromise';
-import { TODO_OBJECT_STORE_NAME } from 'IndexDB/constants';
 
 export class IndexedDbRepository<TItem> {
     error: unknown;

@@ -1,25 +1,13 @@
 $colors: (
-        global: (
-
-        ),
-        block: (
-
-        ),
-        text: (
-          default: #383636,
-        ),
-        button: (
-
-        ),
-        border: (
-
-        ),
-        header: (
-
-        ),
-        footer: (
-
-        ),
+    global: (),
+    block: (),
+    text: (
+        default: #383636,
+    ),
+    button: (),
+    border: (),
+    header: (),
+    footer: (),
 );
 
 @function color($keys...) {

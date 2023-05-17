@@ -1,6 +1,6 @@
-import React, { KeyboardEventHandler, memo, MouseEventHandler, useRef, useState } from 'react';
-import { IPostQuery } from 'Core/API';
+import React, { KeyboardEventHandler, MouseEventHandler, memo, useRef, useState } from 'react';
 import { Spinner } from 'Common/UIKit';
+import { IPostQuery } from 'Core/API';
 import {
     removePostJsonServerThunk,
     updatePostJsonServerThunk,

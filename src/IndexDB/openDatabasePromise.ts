@@ -7,7 +7,7 @@ export function openDatabasePromise(keyPath: string): Promise<IDBDatabase> {
         dbOpenRequest.onblocked = () => {
             reject(
                 'Требуется обновление структуры базы данных, хранимой в вашем браузере, ' +
-                'но браузер уведомил о блокировке базы данных.'
+                    'но браузер уведомил о блокировке базы данных.'
             );
         };
 
@@ -17,8 +17,8 @@ export function openDatabasePromise(keyPath: string): Promise<IDBDatabase> {
 
             reject(
                 'Невозможно открыть базу данных, либо при её открытии произошла неисправимая ошибка.' +
-                // @ts-ignore
-                (err?.message ? 'Техническая информация: ' + err?.message : '')
+                    // @ts-ignore
+                    (err?.message ? 'Техническая информация: ' + err?.message : '')
             );
         };
 

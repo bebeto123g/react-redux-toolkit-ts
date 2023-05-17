@@ -1,15 +1,15 @@
 export interface IPost {
-    userId: number
-    id: number
-    title: string
-    body: string
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
 }
 
 export interface ITodo {
-    userId: number
-    id: number
-    title: string
-    completed: boolean
+    userId: number;
+    id: number;
+    title: string;
+    completed: boolean;
 }
 
 export interface IServicePlaceholderRequestParams {

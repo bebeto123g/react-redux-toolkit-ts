@@ -1,6 +1,6 @@
-import { ActionReducerMapBuilder, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { IAsyncStore } from 'Store/interfaces';
+import { ActionReducerMapBuilder, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { EProcessStatus } from 'Store/enums';
+import { IAsyncStore } from 'Store/interfaces';
 
 type TThunk<T> = ReturnType<typeof createAsyncThunk<T>>;
 type TBuilder<T> = ActionReducerMapBuilder<IAsyncStore<T>>;

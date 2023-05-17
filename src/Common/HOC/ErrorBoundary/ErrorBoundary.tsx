@@ -1,4 +1,4 @@
-import React, { ReactNode, Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { ErrorBoundaryView } from 'Common/HOC/ErrorBoundary/ErrorBoundaryView';
 
 interface IErrorBoundaryProps {
@@ -23,8 +23,8 @@ export class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundary
     }
 
     // componentDidCatch(error: Error) {
-        // You can also log the error to an error reporting service
-        // console.dir(error);
+    // You can also log the error to an error reporting service
+    // console.dir(error);
     // }
 
     render() {

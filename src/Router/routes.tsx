@@ -1,11 +1,11 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { MainPage } from 'Pages/MainPage';
-import { PostsPlaceholderPage } from 'Pages/PostsPlaceholderPage';
-import { PostsJsonServerPageThunk } from 'Pages/PostsJsonServerPageThunk';
-import { ERouterPaths } from 'Router/enums';
 import { PostsJsonServerPageRtk } from 'Pages/PostsJsonServerPageRTK';
+import { PostsJsonServerPageThunk } from 'Pages/PostsJsonServerPageThunk';
+import { PostsPlaceholderPage } from 'Pages/PostsPlaceholderPage';
 import { TodosJsonServerRtlQueryPage } from 'Pages/TodosJsonServerRtlQueryPage';
+import { ERouterPaths } from 'Router/enums';
 
 export const routes: RouteObject[] = [
     {

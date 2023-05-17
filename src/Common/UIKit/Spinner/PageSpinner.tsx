@@ -1,7 +1,7 @@
 import React from 'react';
+import { Spinner } from 'Common/UIKit';
 import { EBootstrapColors } from 'Core/enums';
 import { Utils } from 'Core/Utils';
-import { Spinner } from 'Common/UIKit';
 
 interface IPageSpinnerProps {
     color?: EBootstrapColors;

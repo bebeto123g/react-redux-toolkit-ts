@@ -12,12 +12,7 @@ export const PostPlaceholderAdd = () => {
                     <label htmlFor="inputPassword2" className="visually-hidden">
                         Password
                     </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="input-add=post"
-                        placeholder="Add post"
-                    />
+                    <input type="text" className="form-control" id="input-add=post" placeholder="Add post" />
                 </div>
                 <div className="col-1 d-flex justify-content-end">
                     <button type="submit" className="btn btn-primary">
