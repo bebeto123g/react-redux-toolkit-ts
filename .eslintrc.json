@@ -119,6 +119,11 @@
                         "position": "before"
                     },
                     {
+                        "pattern": "react-dom/client",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
                         "pattern": "react-dom",
                         "group": "external",
                         "position": "before"
