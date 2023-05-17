@@ -6,8 +6,11 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
+        "plugin:prettier/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript",
+        "prettier"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -116,7 +119,22 @@
                         "position": "before"
                     },
                     {
+                        "pattern": "react-dom",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
                         "pattern": "react-router-dom",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "@testing-library/react",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "@testing-library/user-event",
                         "group": "external",
                         "position": "before"
                     },
