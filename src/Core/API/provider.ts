@@ -2,7 +2,7 @@ export class APIProvider {
     static async get<T>(url: string): Promise<T> {
         const response = await fetch(url, {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { ['Content-Type']: 'application/json' },
         });
 
         if (!response.ok) throw new Error(response.statusText);
@@ -12,7 +12,7 @@ export class APIProvider {
     static async post<TResponse, TData extends object>(url: string, data: TData): Promise<TResponse> {
         const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { ['Content-Type']: 'application/json' },
             body: JSON.stringify(data),
         });
 
@@ -23,7 +23,7 @@ export class APIProvider {
     static async patch<TResponse, TData extends object>(url: string, data: TData): Promise<TResponse> {
         const response = await fetch(url, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { ['Content-Type']: 'application/json' },
             body: JSON.stringify(data),
         });
 
@@ -34,7 +34,7 @@ export class APIProvider {
     static async delete<TResponse>(url: string): Promise<TResponse> {
         const response = await fetch(url, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { ['Content-Type']: 'application/json' },
         });
 
         if (!response.ok) throw new Error(response.statusText);

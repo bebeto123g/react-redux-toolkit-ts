@@ -1,46 +1,191 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    "ecmaVersion": 2021,
-    "sourceType": "module"
-  },
-  "plugins": ["react","react-hooks", "@typescript-eslint"],
-  "parser": "@typescript-eslint/parser",
-  "rules": {
-    "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
-    "jsx-quotes": ["warn", "prefer-double"],
-    "no-debugger": "warn",
-    "no-console": "off",
-    "prefer-const": "warn",
-    "max-len": ["warn", { "code": 110 }],
-    "comma-dangle": ["warn", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "always-multiline",
-      "functions": "never"
-    }],
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/no-inferrable-types": "warn",
-    "semi": "warn",
-    "react/prop-types": "off",
-    "react/jsx-uses-react": "off",
-    "react/jsx-uses-vars": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
-  }
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2021,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "@typescript-eslint"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "quotes": [
+            "warn",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
+        "jsx-quotes": [
+            "warn",
+            "prefer-double"
+        ],
+        "no-debugger": "warn",
+        "no-console": "off",
+        "prefer-const": "warn",
+        "max-len": [
+            "warn",
+            {
+                "code": 110
+            }
+        ],
+        "comma-dangle": [
+            "warn",
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "never"
+            }
+        ],
+        "no-unused-vars": "off",
+        "semi": "warn",
+        "react/prop-types": "off",
+        "react/jsx-uses-react": "off",
+        "react/jsx-uses-vars": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-inferrable-types": "warn",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            // Данные по умолчанию
+            {
+                "selector": "default",
+                "format": [
+                    "camelCase",
+                    "snake_case"
+                ]
+            },
+            // Все классы через PascalCase
+            {
+                "selector": "class",
+                "format": [
+                    "PascalCase"
+                ]
+            },
+            {
+                "selector": "classMethod",
+                "format": [
+                    "camelCase"
+                ],
+                "leadingUnderscore": "allow"
+            },
+            // Функции через camelCase, исключение функциональные компоненты
+            {
+                "selector": "function",
+                "format": [
+                    "camelCase",
+                    "PascalCase"
+                ]
+            },
+            // Все параметры всех функций через camelCase или PascalCase
+            {
+                "selector": "parameter",
+                "format": [
+                    "camelCase",
+                    "PascalCase"
+                ],
+                "leadingUnderscore": "allow"
+            },
+            // Все пропсы всех объектов, интерфейсов
+            {
+                "selector": "property",
+                "format": [
+                    "camelCase",
+                    "PascalCase",
+                    "snake_case",
+                    "UPPER_CASE"
+                ],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "objectLiteralProperty",
+                "format": [
+                    "camelCase",
+                    "PascalCase",
+                    "snake_case",
+                    "UPPER_CASE"
+                ],
+                "leadingUnderscore": "allow"
+            },
+            // Переменные
+            {
+                "selector": "variable",
+                "format": [
+                    "camelCase",
+                    "PascalCase",
+                    "snake_case",
+                    "UPPER_CASE"
+                ]
+            },
+            // Все интерфейсы строго с I
+            {
+                "selector": "interface",
+                "format": [
+                    "PascalCase"
+                ],
+                "custom": {
+                    "regex": "^I[A-Z]",
+                    "match": true
+                }
+            },
+            // Все типы строго с T
+            {
+                "selector": "typeAlias",
+                "format": [
+                    "PascalCase"
+                ],
+                "custom": {
+                    "regex": "^T[A-Z]",
+                    "match": true
+                }
+            },
+            // Все типы строго с T для дженериков и прочего
+            {
+                "selector": "typeParameter",
+                "format": [
+                    "PascalCase"
+                ],
+                "prefix": [
+                    "T"
+                ]
+            },
+            // Все Enum строго с E
+            {
+                "selector": "enum",
+                "format": [
+                    "PascalCase"
+                ],
+                "custom": {
+                    "regex": "^E[A-Z]",
+                    "match": true
+                }
+            },
+            // Все элементы Enum прописывать через UPPER_CASE
+            {
+                "selector": "enumMember",
+                "format": [
+                    "UPPER_CASE"
+                ]
+            }
+        ]
+    }
 }
