@@ -391,6 +391,12 @@
       "title": "Post for JSON server 2",
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto illo incidunt modi nostrum pariatur porro quia quos recusandae saepe!",
       "createDate": "2023-02-07T11:22:32.624Z"
+    },
+    {
+      "title": "111",
+      "text": "",
+      "createDate": "2023-05-23T19:35:38.995Z",
+      "id": 161
     }
   ]
 }

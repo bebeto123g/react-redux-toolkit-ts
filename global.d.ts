@@ -1,3 +1,3 @@
 export declare global {
-    type ITimeout = ReturnType<typeof setTimeout> | null
+    type TTimeout = ReturnType<typeof setTimeout> | null;
 }
