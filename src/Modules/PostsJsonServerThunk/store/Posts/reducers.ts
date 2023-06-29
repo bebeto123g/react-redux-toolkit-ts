@@ -1,66 +1,17 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { APIServiceJsonServer, IPostQuery } from 'Core/API';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IPostQuery } from 'Core/API';
+import { IUpdateSortPosts } from 'Modules/PostsJsonServerThunk/interfaces';
 import { IAsyncStore } from 'Store/interfaces';
 import { ReduxUtils } from 'Store/Utils';
+// eslint-disable-next-line import/no-cycle
+import {
+    createPostJsonServerThunk,
+    getPostsJsonServerThunk,
+    removePostJsonServerThunk,
+    updatePostJsonServerThunk,
+} from './actions';
 
 const initialState: IAsyncStore<IPostQuery[]> = ReduxUtils.createDefaultAsyncState();
-
-export const getPostsJsonServerThunk = createAsyncThunk(
-    'jsonServerThunk/posts/getAll',
-    async (_, thunkAPI) => {
-        try {
-            const posts = await APIServiceJsonServer.getPosts();
-            return posts.reverse();
-        } catch (e) {
-            const error = e as Error;
-            return thunkAPI.rejectWithValue(error?.message || 'Оказия');
-        }
-    }
-);
-
-export const createPostJsonServerThunk = createAsyncThunk(
-    'jsonServerThunk/posts/create',
-    async (arg: Pick<IPostQuery, 'title'>, { rejectWithValue, dispatch }) => {
-        try {
-            const post = await APIServiceJsonServer.createPost({
-                title: arg.title,
-                text: '',
-                createDate: new Date().toISOString(),
-            });
-
-            dispatch(addPostThunkMutate(post));
-        } catch (e) {
-            const error = e as Error;
-            return rejectWithValue(error.message);
-        }
-    }
-);
-
-export const removePostJsonServerThunk = createAsyncThunk(
-    'jsonServerThunk/posts/remove',
-    async (post: IPostQuery, { rejectWithValue, dispatch }) => {
-        try {
-            await APIServiceJsonServer.deletePost(post.id);
-            dispatch(removePostThunkMutate(post));
-        } catch (e) {
-            const error = e as Error;
-            return rejectWithValue(error.message);
-        }
-    }
-);
-
-export const updatePostJsonServerThunk = createAsyncThunk(
-    'jsonServerThunk/posts/update',
-    async (post: IPostQuery, { rejectWithValue, dispatch }) => {
-        try {
-            const updatePost = await APIServiceJsonServer.updatePost(post);
-            dispatch(updatePostThunkMutate(updatePost));
-        } catch (e) {
-            const error = e as Error;
-            return rejectWithValue(error.message);
-        }
-    }
-);
 
 /**
  * Это редюсер, который в RTK называется slice
@@ -80,6 +31,17 @@ export const postsSlice = createSlice({
         removePostThunkMutate(state, action: PayloadAction<IPostQuery>) {
             state.data = state.data?.filter((post) => post.id !== action.payload.id) || null;
         },
+        updatePostOrderMutate(state, action: PayloadAction<IUpdateSortPosts>) {
+            // очевидно тут нужен связный список, но для простоты будем насиловать массив
+            if (!state.data) return;
+            const { currentPost, overPost } = action.payload;
+
+            const overPostIndex = state.data.findIndex(({ id }) => overPost.id === id);
+            const currentPostIndex = state.data.findIndex(({ id }) => currentPost.id === id);
+
+            state.data.splice(currentPostIndex, 1);
+            state.data.splice(overPostIndex, 0, currentPost);
+        },
     },
     extraReducers: (builder) => {
         ReduxUtils.createThunkExtraReducers(getPostsJsonServerThunk, builder);
@@ -90,4 +52,5 @@ export const postsSlice = createSlice({
     },
 });
 
-const { addPostThunkMutate, removePostThunkMutate, updatePostThunkMutate } = postsSlice.actions;
+export const { addPostThunkMutate, removePostThunkMutate, updatePostThunkMutate, updatePostOrderMutate } =
+    postsSlice.actions;

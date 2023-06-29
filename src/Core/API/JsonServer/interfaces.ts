@@ -9,4 +9,5 @@ export interface IPostQuery {
     title: string;
     text: string;
     createDate: Date | string;
+    order?: number;
 }

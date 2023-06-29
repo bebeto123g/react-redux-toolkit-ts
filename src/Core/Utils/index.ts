@@ -1,3 +1,5 @@
+import { IPostQuery } from 'Core/API';
+
 type TClassnamesProp = Record<string, string | boolean>;
 
 export class Utils {
@@ -24,5 +26,9 @@ export class Utils {
         return new Promise((resolve) => {
             setTimeout(resolve, time);
         });
+    }
+
+    static sortPostOrder(a: IPostQuery, b: IPostQuery) {
+        return (b.order || 0) - (a.order || 0);
     }
 }

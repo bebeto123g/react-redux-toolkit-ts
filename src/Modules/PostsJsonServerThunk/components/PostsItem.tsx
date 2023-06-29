@@ -4,7 +4,7 @@ import { IPostQuery } from 'Core/API';
 import {
     removePostJsonServerThunk,
     updatePostJsonServerThunk,
-} from 'Modules/PostsJsonServerThunk/store/Posts/reducers';
+} from 'Modules/PostsJsonServerThunk/store/Posts/actions';
 import { useAppDispatch } from 'Store';
 
 interface IPostPlaceholderItemProps {
@@ -50,15 +50,7 @@ export const PostsItem = memo((props: IPostPlaceholderItemProps) => {
     const isDisabled = isDeleteLoading || isUpdateLoading;
 
     return (
-        <li
-            className="list-group-item d-flex justify-content-between align-items-center"
-            style={{
-                minHeight: '56px',
-                pointerEvents: isDisabled ? 'none' : 'auto',
-                opacity: isDisabled ? 0.8 : 1,
-                backgroundColor: isDisabled ? '#0a09090a' : 'initial',
-            }}
-        >
+        <>
             {isEdit && !isDisabled ? (
                 <input
                     type="text"
@@ -87,7 +79,7 @@ export const PostsItem = memo((props: IPostPlaceholderItemProps) => {
             >
                 {isDeleteLoading ? <Spinner small /> : <i className="bi bi-trash" />}
             </button>
-        </li>
+        </>
     );
 });
 
