@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
-import { BasicTable } from '../components/Table/BasicTable';
 import { CollapsibleTable } from '../components/Table/CollapsibleTable';
 import { DataTable } from '../components/Table/DataTable';
+import { DNDBasicTable } from '../components/Table/DNDBasicTable';
 import { SortingTable } from '../components/Table/SortingTable';
 import { StickyHeadTable } from '../components/Table/StickyHeaderTable';
 import { VirtualizedTable } from '../components/Table/VirtualizedTable';
@@ -15,7 +15,7 @@ export const dndTableRoutes: RouteObject[] = [
     },
     {
         path: EDndTableRouterPaths.BASIC,
-        element: <BasicTable />,
+        element: <DNDBasicTable />,
     },
     {
         path: EDndTableRouterPaths.COLLAPSIBLE,

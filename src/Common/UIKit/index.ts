@@ -1,9 +1,3 @@
-export { BasicTable } from './Table/BasicTable/BasicTable';
-export { CollapsibleTable } from './Table/CollapsibleTable/CollapsibleTable';
-export { DataTable } from './Table/DataTable/DataTable';
-export { SortingTable } from './Table/SortingTable/SortingTable';
-export { StickyHeadTable } from './Table/StickyHeadTable/StickyHeadTable';
-export { VirtualizedTable } from './Table/VirtualizedTable/VirtualizedTable';
 export { ButtonRoute } from 'Common/UIKit/ButtonRoute/ButtonRoute';
 export { NavLink } from 'Common/UIKit/NavLink/NavLink';
 export { Portal } from 'Common/UIKit/Portal/Portal';
