@@ -4,7 +4,7 @@ import { CollapsibleTable } from '../components/Table/CollapsibleTable';
 import { DataTable } from '../components/Table/DataTable';
 import { SortingTable } from '../components/Table/SortingTable';
 import { StickyHeadTable } from '../components/Table/StickyHeaderTable';
-import { ReactVirtualizedTable } from '../components/Table/VirtualizedTable';
+import { VirtualizedTable } from '../components/Table/VirtualizedTable';
 import { EmptyTableView } from '../views/EmptyTableView';
 import { EDndTableRouterPaths } from './enums';
 
@@ -35,6 +35,6 @@ export const dndTableRoutes: RouteObject[] = [
     },
     {
         path: EDndTableRouterPaths.VIRTIALIZED,
-        element: <ReactVirtualizedTable />,
+        element: <VirtualizedTable />,
     },
 ];
