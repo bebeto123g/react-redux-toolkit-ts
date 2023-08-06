@@ -1,7 +1,7 @@
 import React, { FormEventHandler } from 'react';
 import { Spinner } from 'Common/UIKit';
 import { useAppDispatch } from 'Store';
-import { createPostJsonServerThunk } from '../store/Posts/reducers';
+import { createPostJsonServerThunk } from '../store/Posts/actions';
 
 export const PostsAdd = () => {
     const dispatch = useAppDispatch();

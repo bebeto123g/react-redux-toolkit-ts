@@ -1,6 +1,8 @@
-import React from 'react';
 import { RouteObject } from 'react-router-dom';
+import { dndTableRoutes } from 'Modules/DndMaterialTable';
+import { DndMaterialTablePage } from 'Pages/DndMaterialTablePage';
 import { MainPage } from 'Pages/MainPage';
+import { NotFoundPage } from 'Pages/NotFoundPage';
 import { PostsJsonServerPageRtk } from 'Pages/PostsJsonServerPageRTK';
 import { PostsJsonServerPageThunk } from 'Pages/PostsJsonServerPageThunk';
 import { PostsPlaceholderPage } from 'Pages/PostsPlaceholderPage';
@@ -27,5 +29,14 @@ export const routes: RouteObject[] = [
     {
         path: ERouterPaths.TODOS_JSON_SERVER_RTK,
         element: <TodosJsonServerRtlQueryPage />,
+    },
+    {
+        path: ERouterPaths.DND_MATERIAL_TABLE,
+        element: <DndMaterialTablePage />,
+        children: dndTableRoutes,
+    },
+    {
+        path: '*',
+        element: <NotFoundPage />,
     },
 ];
