@@ -2,11 +2,11 @@ import React from 'react';
 import { BasicTable, IBasicTableColumns, IBasicTableData } from 'Common/UIKit/Table';
 
 export const BasicTableColumns: IBasicTableColumns[] = [
-    { label: 'Имя', key: 'name', align: 'left', order: 1 },
-    { label: 'Гражданство', key: 'citizenship', align: 'right', order: 5 },
-    { label: 'Должность', key: 'job', align: 'right', order: 3 },
-    { label: 'Возраст', key: 'age', align: 'right', order: 2 },
-    { label: 'Стаж', key: 'experience', align: 'right', order: 4 },
+    { label: 'Имя', key: 'name', order: 1 },
+    { label: 'Гражданство', key: 'citizenship', order: 7 },
+    { label: 'Должность', key: 'job', order: 3 },
+    { label: 'Возраст', key: 'age', order: 2 },
+    { label: 'Стаж', key: 'experience', order: 6 },
 ];
 
 export const BasicTableData: IBasicTableData[] = [
