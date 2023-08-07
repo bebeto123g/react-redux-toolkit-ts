@@ -2,6 +2,7 @@ import { RouteObject } from 'react-router-dom';
 import { CollapsibleTable } from '../components/Table/CollapsibleTable';
 import { DataTable } from '../components/Table/DataTable';
 import { DNDBasicTable } from '../components/Table/DNDBasicTable';
+import { MaterialReactTableExample } from '../components/Table/MaterialReactTable/MaterialReactTable';
 import { SortingTable } from '../components/Table/SortingTable';
 import { StickyHeadTable } from '../components/Table/StickyHeaderTable';
 import { VirtualizedTable } from '../components/Table/VirtualizedTable';
@@ -36,5 +37,9 @@ export const dndTableRoutes: RouteObject[] = [
     {
         path: EDndTableRouterPaths.VIRTIALIZED,
         element: <VirtualizedTable />,
+    },
+    {
+        path: EDndTableRouterPaths.MATERIAL_REACT,
+        element: <MaterialReactTableExample />,
     },
 ];

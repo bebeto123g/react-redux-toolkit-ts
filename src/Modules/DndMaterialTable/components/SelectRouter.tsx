@@ -29,6 +29,7 @@ const TABLE_ROUTES: ITableSelectRoutes[] = [
     { name: 'Sorting Table', path: EDndTableRouterPaths.SORTING },
     { name: 'Stycky Header Table', path: EDndTableRouterPaths.STICKY_HEADER },
     { name: 'Virtualized Table', path: EDndTableRouterPaths.VIRTIALIZED },
+    { name: 'Material Example Table', path: EDndTableRouterPaths.MATERIAL_REACT },
 ];
 
 function getStyles(path: EDndTableRouterPaths, route: EDndTableRouterPaths, theme: Theme) {

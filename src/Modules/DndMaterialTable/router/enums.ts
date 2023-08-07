@@ -6,4 +6,5 @@ export enum EDndTableRouterPaths {
     SORTING = 'sorting',
     STICKY_HEADER = 'stycky-header',
     VIRTIALIZED = 'virtualized',
+    MATERIAL_REACT = 'material-react',
 }
