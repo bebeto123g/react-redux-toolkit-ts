@@ -64,7 +64,10 @@ export const BasicTable = (props: IBasicTableProps) => {
                                     onDragOver={handleDragOver}
                                     onDrop={handleOnDrop}
                                     onDragEnter={handleDragEnter}
-                                    sx={{ borderLeft: column.key === dragOver ? '5px solid red' : '' }}
+                                    sx={{
+                                        borderLeft: column.key === dragOver ? '5px solid red' : '',
+                                        ...column.styles,
+                                    }}
                                 >
                                     {column.label}
                                 </TableCell>
@@ -79,7 +82,7 @@ export const BasicTable = (props: IBasicTableProps) => {
                                 const column = columnsMap[key];
                                 return (
                                     <TableCell key={column.key + row.id} align={!index ? 'left' : 'right'}>
-                                        {row[column.key] || '-'}
+                                        {row[column.key] || ''}
                                     </TableCell>
                                 );
                             })}

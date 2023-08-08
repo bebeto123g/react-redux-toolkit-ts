@@ -1,7 +1,11 @@
+import { ReactNode } from 'react';
+import { SxProps, Theme } from '@mui/material';
+
 export interface IBasicTableColumns {
     label: string;
     key: string;
     order: number;
+    styles?: SxProps<Theme>;
 }
 
 interface IRequiredId {
@@ -9,7 +13,7 @@ interface IRequiredId {
 }
 
 export interface IBasicTableData extends IRequiredId {
-    [key: string]: string;
+    [key: string]: ReactNode;
 }
 
 export interface IBasicTableProps {
